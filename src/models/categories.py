@@ -8,7 +8,11 @@ class Categories(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False, unique=True)
     description = Column(String(255), nullable=True)
+    active = Column(Integer, default=1)  # 1 for active, 0 for inactive
 
+    def __init__(self, name, description=None):
+        self.name = name
+        self.description = description
 
     def __repr__(self):
         return f"<Category(id={self.id}, name='{self.name}', description='{self.description}')>"
